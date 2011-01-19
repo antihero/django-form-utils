@@ -132,14 +132,17 @@ def get_row_attrs(bases, attrs):
 
 def _mark_row_attrs(bf, form):
     row_attrs = deepcopy(form._row_attrs.get(bf.name, {}))
+    classes = []
     if bf.field.required:
-        req_class = 'required'
+        classes.append('required')
     else:
-        req_class = 'optional'
+        classes.append('optional')
+    if bf.errors:
+        classes.append('error')
     if 'class' in row_attrs:
-        row_attrs['class'] = row_attrs['class'] + ' ' + req_class
+        row_attrs['class'] = row_attrs['class'] + ' ' + ' '.join(classes)
     else:
-        row_attrs['class'] = req_class
+        row_attrs['class'] = ' '.join(classes)
     bf.row_attrs = mark_safe(flatatt(row_attrs))
     return bf
 
