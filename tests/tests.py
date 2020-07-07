@@ -8,7 +8,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db.models.fields.files import (
     FieldFile, ImageFieldFile, FileField, ImageField)
 from django.test import TestCase
-from django.utils import six
+import six
 
 from mock import patch
 

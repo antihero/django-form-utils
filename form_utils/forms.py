@@ -13,7 +13,7 @@ try:
     from django.forms.utils import flatatt, ErrorDict
 except ImportError: # Django < 1.9 compatibility
     from django.forms.util import flatatt, ErrorDict
-from django.utils import six
+import six
 from django.utils.safestring import mark_safe
 
 
