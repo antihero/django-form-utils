@@ -9,6 +9,7 @@ from __future__ import unicode_literals
 from copy import deepcopy
 
 from django import forms
+from django.forms.boundfield import BoundField
 try:
     from django.forms.utils import flatatt, ErrorDict
 except ImportError: # Django < 1.9 compatibility
@@ -92,7 +93,7 @@ class FieldsetCollection(object):
             except KeyError:
                 message = "Fieldset definition must include 'fields' option."
                 raise ValueError(message)
-            boundfields = [forms.forms.BoundField(self.form,
+            boundfields = [BoundField(self.form,
                                                   self.form.fields[n], n)
                            for n in field_names]
             self._cached_fieldsets.append(Fieldset(self.form, name,
